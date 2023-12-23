@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cambio de Color con Teclas</title>
+</head>
+<body>
+
+  <div id="key" style="width: 200px; height: 200px; background-color: white; border: 1px solid black;"></div>
+  <div id="azul" style="width: 200px; height: 200px; background-color: blue;"></div>
+  <div id="rojo" style="width: 200px; height: 200px; background-color: red;"></div>
+  <div id="verde" style="width: 200px; height: 200px; background-color: green;"></div>
+  <div id="amarillo" style="width: 200px; height: 200px; background-color: yellow;"></div>
+
+
+  <script>
+
+    const azul = document.getElementById("azul")
+    const rojo = document.getElementById("rojo")
+    const verde = document.getElementById("verde")
+    const amarillo = document.getElementById("amarillo")
+
+    // Clic para cambiar el color al negro
+    azul.addEventListener('click', cambiarColorNegro);
+    rojo.addEventListener('click', cambiarColorNegro);
+    verde.addEventListener('click', cambiarColorNegro);
+    amarillo.addEventListener('click', cambiarColorNegro);
+
+    // Variable para almacenar el color
+    var colorGlobal = '';
+
+    // Función para cambiar el color del div "key" según la tecla presionada
+    function cambiarColor(event) {
+      switch (event.key) {
+        case 'a':
+          colorGlobal = 'pink';
+          break;
+        case 's':
+          colorGlobal = 'orange';
+          break;
+        case 'd':
+          colorGlobal = 'lightblue';
+          break;
+        case 'q':
+          crearNuevoDiv('purple');
+          break;
+        case 'w':
+          crearNuevoDiv('gray');
+          break;
+        case 'e':
+          crearNuevoDiv('brown');
+          break;
+        default:
+          // Para otras teclas, no se cambia el color ni se crea un nuevo div
+          return;
+      }
+
+      // Cambiar el color del div "key"
+      document.getElementById('key').style.backgroundColor = colorGlobal;
+    }
+
+    // Función para cambiar el color al negro al hacer clic
+    function cambiarColorNegro() {
+      this.style.backgroundColor = 'black';
+    }
+
+    // Función para crear un nuevo div con las dimensiones y color especificados
+    function crearNuevoDiv(color) {
+      var nuevoDiv = document.createElement('div');
+      nuevoDiv.style.width = '200px';
+      nuevoDiv.style.height = '200px';
+      nuevoDiv.style.backgroundColor = color;
+      nuevoDiv.style.border = '1px solid black';
+
+      document.body.appendChild(nuevoDiv);
+    }
+
+    // Evento de escucha para las teclas a, s, d, q, w, y e
+    document.addEventListener('keydown', cambiarColor);
+  </script>
+
+</body>
+</html>
+
